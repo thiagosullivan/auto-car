@@ -5,7 +5,11 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: '"i.ibb.co"',
+        hostname: "i.ibb.co",
+      },
+      {
+        protocol: "https",
+        hostname: "s3.carro57.com.br",
       },
     ],
   },
