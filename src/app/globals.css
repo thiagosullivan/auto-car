@@ -41,6 +41,7 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --color-gray-one: #494949;
 }
 
 :root {
@@ -118,5 +119,10 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: "Poppins", sans-serif;
   }
 }
+
+/* @theme {
+  --color-gray-one: #494949;
+} */
