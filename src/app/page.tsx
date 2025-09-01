@@ -1,6 +1,6 @@
 import Image from "next/image";
-import BrandsComponent from "./components/brands";
-import VisitedCars from "./components/visitedCars";
+import BrandsComponent from "./_components/brands";
+import VisitedCars from "./_components/visitedCars";
 import CarCards from "@/components/commons/carCards";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -35,13 +35,13 @@ export default function Home() {
       <section className="w-full max-w-7xl mx-auto px-4 mb-12">
         <h3 className="font-bold mb-4">Veículos em destaque</h3>
         <CarCards />
-        <div className="mt-12 flex justify-center">
-          {/* {featuredCars.length > 6 && (
-          <Button className="bg-red-one py-8 px-16" asChild>
-            <Link href="/estoque">Ver Todos</Link>
-          </Button>
-        )} */}
-        </div>
+        {featuredCars.length > 6 && (
+          <div className="mt-12 flex justify-center">
+            <Button className="bg-red-one py-8 px-16" asChild>
+              <Link href="/estoque">Ver Todos</Link>
+            </Button>
+          </div>
+        )}
       </section>
       {/* Finance Alert */}
       <section className="mb-12">

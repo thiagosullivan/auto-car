@@ -6,7 +6,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
@@ -31,7 +30,6 @@ const FormContactFooter = () => {
   });
 
   async function onSubmit(data: ContactFormData) {
-    // Lógica de submit
     console.log(data);
   }
 

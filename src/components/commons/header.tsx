@@ -25,8 +25,8 @@ const navLinks = [
     name: "Empresa",
   },
   {
-    href: "/favorito",
-    name: "Favorito",
+    href: "/favoritos",
+    name: "Favoritos",
   },
   {
     href: "/contato",

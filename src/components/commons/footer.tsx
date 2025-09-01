@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
 import { FiMail, FiMapPin, FiPhoneCall } from "react-icons/fi";
-import FormContactFooter from "@/app/components/formContactFooter";
+import FormContactFooter from "@/app/_components/formContactFooter";
 import {
   FaFacebookF,
   FaInstagram,
@@ -33,8 +33,8 @@ const navLinks = [
     name: "Empresa",
   },
   {
-    href: "/favorito",
-    name: "Favorito",
+    href: "/favoritos",
+    name: "Favoritos",
   },
   {
     href: "/contato",
