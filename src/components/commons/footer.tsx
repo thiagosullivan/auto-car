@@ -37,6 +37,10 @@ const navLinks = [
     name: "Favoritos",
   },
   {
+    href: "/politicas",
+    name: "Politicas de Privacidade",
+  },
+  {
     href: "/contato",
     name: "Contato",
   },
