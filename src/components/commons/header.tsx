@@ -49,9 +49,11 @@ const Header = () => {
         <nav>
           <ul className="flex gap-4">
             {navLinks.map((link) => (
-              <Link href={link.href} key={link.name} className="text-gray-one">
-                {link.name}
-              </Link>
+              <li key={link.name}>
+                <Link href={link.href} className="text-gray-one">
+                  {link.name}
+                </Link>
+              </li>
             ))}
           </ul>
         </nav>

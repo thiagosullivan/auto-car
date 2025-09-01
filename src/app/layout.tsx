@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/commons/header";
+import Footer from "@/components/commons/footer";
 
 const poppinsSans = Poppins({
   subsets: ["latin"],
@@ -25,6 +26,7 @@ export default function RootLayout({
       <body className={`${poppinsSans.variable} antialiased bg-gray-200`}>
         <Header />
         {children}
+        <Footer />
       </body>
     </html>
   );
