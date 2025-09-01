@@ -43,6 +43,10 @@ export default function Home() {
         )} */}
         </div>
       </section>
+      {/* Finance Alert */}
+      <section className="mb-12">
+        <FinancingAlert />
+      </section>
     </main>
   );
 }
