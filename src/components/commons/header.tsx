@@ -1,6 +1,9 @@
+"use client";
+
 import { Heart, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React from "react";
 
 const navLinks = [
@@ -35,6 +38,8 @@ const navLinks = [
 ];
 
 const Header = () => {
+  const pathname = usePathname();
+
   return (
     <header className="shadow-md bg-white py-4">
       <div className="mx-auto max-w-7xl w-full px-4 flex justify-between items-center">
@@ -50,7 +55,12 @@ const Header = () => {
           <ul className="flex gap-4">
             {navLinks.map((link) => (
               <li key={link.name}>
-                <Link href={link.href} className="text-gray-one">
+                <Link
+                  href={link.href}
+                  className={`text-gray-one ${
+                    pathname === link.href && "text-red-one font-semibold"
+                  }`}
+                >
                   {link.name}
                 </Link>
               </li>

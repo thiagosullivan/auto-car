@@ -65,7 +65,10 @@ const Footer = () => {
               <ul className="flex flex-col gap-2.5">
                 {navLinks.map((link) => (
                   <li key={link.name}>
-                    <Link href={link.href} className="text-gray-one text-sm">
+                    <Link
+                      href={link.href}
+                      className="text-gray-one text-sm hover:text-red-one"
+                    >
                       {link.name}
                     </Link>
                   </li>
