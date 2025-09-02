@@ -1,7 +1,6 @@
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -21,7 +20,7 @@ const Terms = () => {
             <DialogTitle className="font-bold text-2xl">
               Política Privacidade
             </DialogTitle>
-            <DialogDescription className="text-justify">
+            <div className="text-justify">
               <p>
                 A sua privacidade é importante para nós. É política do Auto Car
                 respeitar a sua privacidade em relação a qualquer informação sua
@@ -158,7 +157,7 @@ const Terms = () => {
               <p>
                 Esta política é efetiva a partir de&nbsp;1 September 2025 14:53
               </p>
-            </DialogDescription>
+            </div>
           </DialogHeader>
         </DialogContent>
       </Dialog>

@@ -45,7 +45,7 @@ const FormSale = () => {
   });
 
   async function onSubmit(data: SaleFormData) {
-    console.log(data);
+    console.log(data, "submit");
   }
 
   return (
@@ -160,6 +160,7 @@ const FormSale = () => {
               />
             </div>
           </div>
+          <div className="w-full h-1 border-t-1 border-gray-300 my-6" />
           <div className="mb-12">
             <h2 className="mb-4 text-xl font-bold">Dados Pessoais</h2>
             <div className="mb-12">
@@ -225,13 +226,13 @@ const FormSale = () => {
                 render={({ field }) => (
                   <FormItem className="">
                     <FormLabel className="text-base">
-                      Informações Adicionais
+                      Informação Adicional
                     </FormLabel>
                     <FormControl>
                       <Textarea
                         placeholder="Escreva sua mensagem"
                         {...field}
-                        className="resize-none bg-white border-gray-300 h-28"
+                        className="resize-none bg-white border-gray-300 h-24"
                       />
                     </FormControl>
                     <FormMessage />

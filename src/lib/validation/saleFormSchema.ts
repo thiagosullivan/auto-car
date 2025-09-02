@@ -21,11 +21,9 @@ export const saleSchema = z.object({
     }, "Ano inválido"),
   fuel: z.string(),
   name: z.string().min(2, "Nome muito curto"),
-  cpf: z.string().min(9, "CPF inválido"),
-  birth: z.string().min(6, "A data de nascimento é obrigatória"),
   phone: z.string().min(8, "Telefone inválido"),
   email: z.email("Email inválido").optional(),
-  message: z.string().min(5, "Mensagem muito curta"),
+  message: z.string().min(10, "Mensagem muito curta"),
 });
 
 export type SaleFormData = z.infer<typeof saleSchema>;
