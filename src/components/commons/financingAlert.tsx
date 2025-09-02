@@ -7,7 +7,10 @@ const FinancingAlert = () => {
       <p className="text-white font-bold text-4xl max-w-[400px]">
         Faça uma simulação de financiamento com a agente
       </p>
-      <Button className="bg-white text-red-one font-bold py-6 px-8" asChild>
+      <Button
+        className="bg-white text-red-one font-bold py-6 px-10 hover:bg-gray-one hover:text-white"
+        asChild
+      >
         <Link href="/financiamento">Aqui</Link>
       </Button>
     </div>
