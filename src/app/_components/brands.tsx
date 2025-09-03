@@ -29,7 +29,10 @@ const BrandsComponent = ({ brands }: BrandsComponentProps) => {
             key={brand.slug}
             className="basis-1/4 sm:basis-1/6 md:basis-1/7 lg:basis-1/10 xl:basis-1/12"
           >
-            <Link href={`/carros/${brand.slug}`}>
+            <Link
+              href={`/carros/${brand.slug}`}
+              className="hover:opacity-60 ease-in"
+            >
               <div className="flex flex-col items-center gap-y-2">
                 <Card className="p-0 rounded-full">
                   <CardContent className="p-0 w-20 h-20 flex items-center justify-center">

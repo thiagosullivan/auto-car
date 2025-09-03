@@ -1,26 +1,9 @@
 "use client";
+import { Skeleton } from "@/components/ui/skeleton";
 import { brandTable, carTable } from "@/db/schema";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useEffect, useMemo, useState } from "react";
-
-// export const visitedCarData = [
-//   {
-//     carName: "Honda Civic",
-//     carModel: "2.0 16v flexone exl 4p cvt",
-//     carImgUrl: "https://i.ibb.co/9HXkz1CR/car-visited.jpg",
-//   },
-//   {
-//     carName: "Honda Civic",
-//     carModel: "2.0 16v flexone exl 4p cvt",
-//     carImgUrl: "https://i.ibb.co/9HXkz1CR/car-visited.jpg",
-//   },
-//   {
-//     carName: "Honda Civic",
-//     carModel: "2.0 16v flexone exl 4p cvt",
-//     carImgUrl: "https://i.ibb.co/9HXkz1CR/car-visited.jpg",
-//   },
-// ];
 
 interface RecentlyViewedCar {
   slug: string;
@@ -34,13 +17,18 @@ interface VisitedCarCardProps {
 
 export const VisitedCarCard = ({ cars }: VisitedCarCardProps) => {
   const [recentlyViewed, setRecentlyViewed] = useState<RecentlyViewedCar[]>([]);
+  const [loading, setLoading] = useState(false);
 
-  // useMemo para evitar recálculos desnecessários
   const recentlyViewedCars = useMemo(() => {
-    if (recentlyViewed.length === 0) return [];
+    setLoading(true);
+    if (recentlyViewed.length === 0) {
+      setLoading(false);
+      return [];
+    }
 
     const recentlyViewedSlugs = recentlyViewed.map((item) => item.slug);
     const recentlyViewedSlugSet = new Set(recentlyViewedSlugs);
+    setLoading(false);
 
     return cars
       .filter((car) => recentlyViewedSlugSet.has(car.slug))
@@ -70,6 +58,7 @@ export const VisitedCarCard = ({ cars }: VisitedCarCardProps) => {
 
   return (
     <>
+      {loading && <Skeleton className="h-[185px] w-[210px]" />}
       {recentlyViewedCars.length > 0 && (
         <div className="flex flex-col">
           <h3 className="font-bold mb-4">Últimos veículos visitados</h3>

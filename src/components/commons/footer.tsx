@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { FaWhatsapp } from "react-icons/fa";
-import { FiMail, FiMapPin, FiPhoneCall } from "react-icons/fi";
+import { FiClock, FiMail, FiMapPin, FiPhoneCall } from "react-icons/fi";
 import FormContactFooter from "@/app/_components/formContactFooter";
 import {
   FaFacebookF,
@@ -96,6 +96,12 @@ const Footer = () => {
                 <p>
                   Av. Higienópolis, 999, Centro, <br />
                   Londrina - PR, 86040-100
+                </p>
+              </div>
+              <div className="flex items-start gap-x-2">
+                <FiClock size={20} />
+                <p>
+                  Seg - Sex | 09h - 18h <br /> Sab | 09h - 12h
                 </p>
               </div>
             </div>
