@@ -21,7 +21,7 @@ const BrandsComponent = () => {
       <CarouselContent>
         {brandsList.map((brand) => (
           <CarouselItem
-            key={brand.href}
+            key={brand.slug}
             className="basis-1/4 sm:basis-1/6 md:basis-1/7 lg:basis-1/10 xl:basis-1/12"
           >
             <div className="flex flex-col items-center gap-y-2">
