@@ -10,7 +10,13 @@ import { db } from "@/db";
 
 export default async function Home() {
   const brands = await db.query.brandTable.findMany({});
+  const cars = await db.query.carTable.findMany({
+    with: {
+      brand: true,
+    },
+  });
   console.log(brands, "BRANDS");
+  console.log(cars, "CARS");
 
   return (
     <main className="mt-6 text-gray-one">
@@ -38,7 +44,7 @@ export default async function Home() {
       {/* Featured */}
       <section className="w-full max-w-7xl mx-auto px-4 mb-12">
         <h3 className="font-bold mb-4">Veículos em destaque</h3>
-        <CarCards />
+        <CarCards cars={cars} />
         {featuredCars.length > 6 && (
           <div className="mt-12 flex justify-center">
             <Button className="bg-red-one py-8 px-16" asChild>

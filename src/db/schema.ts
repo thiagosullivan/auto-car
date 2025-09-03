@@ -35,7 +35,7 @@ export const gearboxEnum = pgEnum("gearbox", [
   "automático",
   "automático sequencial",
   "CVT",
-  "automático de dupla embreagem",
+  "auto/dupla embreagem",
   "semiautomático",
 ]);
 
@@ -55,13 +55,20 @@ export const carTable = pgTable("car", {
     .notNull()
     .references(() => brandTable.id),
   name: text().notNull(),
+  model: text().notNull(),
   slug: text().notNull().unique(),
   color: colorEnum().notNull(),
   fuel: fuelEnum().notNull(),
   gearbox: gearboxEnum().notNull(),
-  description: text().notNull(),
+  km: text().notNull(),
+  aditionalDetails: text("aditional_details").notNull(),
+  carOptions: text("car_options").array().notNull().default([]),
   priceInCents: integer("prince_in_cents").notNull(),
   imageUrl: text("image_url").notNull(),
+  imageGallery: text("image_gallery").array().notNull().default([]),
+  yearFab: text("year_fab").notNull(),
+  yearModel: text("year_model").notNull(),
+  carPlate: text("car_plate").notNull(),
   createdArt: timestamp("created_at").notNull(),
 });
 
