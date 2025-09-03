@@ -15,10 +15,11 @@ import {
   contactSchema,
 } from "@/lib/validation/footerContactSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const FormContactFooter = () => {
+  const [loading, setLoading] = useState(false);
   const form = useForm<ContactFormData>({
     resolver: zodResolver(contactSchema),
     defaultValues: {
@@ -29,8 +30,47 @@ const FormContactFooter = () => {
     },
   });
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = form;
+
   async function onSubmit(data: ContactFormData) {
     console.log(data);
+
+    console.log("CLICKADO");
+
+    try {
+      setLoading(true);
+      const response = await fetch("/api/sendEmail", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log("Resposta da API:", result);
+
+      if (response.ok) {
+        // Limpa o formulário
+        reset();
+
+        // toast.success(
+        //   "E-mail enviado com sucesso!"
+        // );
+      } else {
+        throw new Error(result.error || "Erro ao enviar e-mail");
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+      // toast.error(
+      //   "Houve uma falha no envio do e-mail!"
+      // );
+    } finally {
+      setLoading(false);
+      console.log("FINALLY");
+    }
   }
 
   return (
