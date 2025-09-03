@@ -1,12 +1,12 @@
 import Image from "next/image";
 import BrandsComponent from "./_components/brands";
-import VisitedCars from "./_components/visitedCars";
 import CarCards from "@/components/commons/carCards";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { featuredCars } from "@/data";
 import FinancingAlert from "@/components/commons/financingAlert";
 import { db } from "@/db";
+import VisitedCars from "./_components/visitedCars";
 
 export default async function Home() {
   const brands = await db.query.brandTable.findMany({});
@@ -37,10 +37,7 @@ export default async function Home() {
         <BrandsComponent brands={brands} />
       </section>
       {/* Visited */}
-      <section className="w-full max-w-7xl mx-auto px-4 mb-12">
-        <h3 className="font-bold mb-4">Últimos veículos visitados</h3>
-        <VisitedCars />
-      </section>
+      <VisitedCars cars={cars} />
       {/* Featured */}
       <section className="w-full max-w-7xl mx-auto px-4 mb-12">
         <h3 className="font-bold mb-4">Veículos em destaque</h3>

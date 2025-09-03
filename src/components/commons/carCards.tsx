@@ -10,6 +10,7 @@ import {
   TbManualGearbox,
 } from "react-icons/tb";
 import { brandTable, carTable } from "@/db/schema";
+import Link from "next/link";
 
 interface CarCardsPorps {
   cars: (typeof carTable.$inferSelect & {
@@ -21,14 +22,14 @@ const CarCards = async ({ cars }: CarCardsPorps) => {
   return (
     <div className="grid grid-cols-3 gap-6">
       {cars.map((car) => (
-        <div key={car.id}>
+        <Link href={`/carros/${car.brand.slug}/${car.slug}`} key={car.id}>
           <Card className="max-w-[380px] p-0 gap-0 rounded-2xl overflow-hidden">
             <div className="w-[380px] h-[315px] relative">
               <Image
                 src={car.imageUrl}
                 alt={car.name}
-                sizes="100vw"
-                objectFit="cover"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                style={{ objectFit: "cover" }}
                 fill
               />
             </div>
@@ -70,7 +71,7 @@ const CarCards = async ({ cars }: CarCardsPorps) => {
               </CardContent>
             </div>
           </Card>
-        </div>
+        </Link>
       ))}
     </div>
   );
