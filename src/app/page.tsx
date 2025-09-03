@@ -6,8 +6,12 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { featuredCars } from "@/data";
 import FinancingAlert from "@/components/commons/financingAlert";
+import { db } from "@/db";
 
-export default function Home() {
+export default async function Home() {
+  const brands = await db.query.brandTable.findMany({});
+  console.log(brands, "BRANDS");
+
   return (
     <main className="mt-6 text-gray-one">
       {/* Hero */}
@@ -24,7 +28,7 @@ export default function Home() {
       {/* Brands */}
       <section className="w-full max-w-7xl mx-auto px-4 mb-12">
         <h3 className="font-bold mb-4">Marcas</h3>
-        <BrandsComponent />
+        <BrandsComponent brands={brands} />
       </section>
       {/* Visited */}
       <section className="w-full max-w-7xl mx-auto px-4 mb-12">
