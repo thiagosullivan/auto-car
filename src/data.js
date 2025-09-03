@@ -273,120 +273,107 @@ export const featuredCars = [
   },
 ];
 
-export const carDetails = [
-  {
-    id: "1",
-    carName: "Corolla",
-    carBrand: "Toyota",
-    carModel: "2.0 vvt-ie flex xei direct shift",
-    carPrice: 11590000,
-    yearFab: "2019",
-    yearModel: "2020",
-    km: "50.000",
-    fuel: "Flex",
-    carColor: "Cinza",
-    carPlate: "S**-***1",
-    options: [
-      {
-        option: "Airbag",
-      },
-      {
-        option: "Alarm",
-      },
-      {
-        option: "Ar-condicionado",
-      },
-      {
-        option: "Ar quente",
-      },
-      {
-        option: "Banco de Couro",
-      },
-      {
-        option: "Cambio automático",
-      },
-      {
-        option: "Retrovisor elétrico",
-      },
-      {
-        option: "Rodas de liga leve",
-      },
-      {
-        option: "Trava elétrica",
-      },
-      {
-        option: "Vidros elétricos",
-      },
-      {
-        option: "Banco elétrico",
-      },
-      {
-        option: "Capota Marítima",
-      },
-      {
-        option: "Chave Cópia/reserva",
-      },
-    ],
-    carDetails:
-      "CARRO EM ÓTIMO ESTADO DE CONSERVAÇÃO, VENHA CONFERIR. Financiamento facilitado, acesse nosso estoque: A melhor avaliação do seu veículo!!! Venha fazer uma visita! Veículos semi-novos de todas as marcas e modelos, revisados, com garantia e procedência. Caldarelli Veículos atua no mercado a mais de 10 anos, trazendo qualidade e um diferencial em veículos semi-novos. Disponibilizamos as melhores taxas e condições de financiamento nas principais operadoras do mercado. Aceitamos carta de crédito, seu veículo como forma de pagamento. Contamos com uma excelente equipe para melhor atende-lo, venha nos fazer uma visita, ou entre em contato pelos telefones: (43) 3324 6001 (43) 3329 9001. Embora a prática rigorosa na acuidade, precisão, exibição e atualização de dados gerais, informações e conteúdo dispostos no site, nos reservamos o direito a correções de possíveis erros de digitação, omissão de dados ou qualquer informação que venha a ser questionada por ser tratar de veiculo semi novo.",
-    shift: "Automático",
-    carImages: [
-      {
-        id: "1",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_0_B_42390ff95a.jpeg",
-      },
-      {
-        id: "2",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_1_B_473e85fcc5.jpeg",
-      },
-      {
-        id: "3",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_2_B_dc2163b7fe.jpeg",
-      },
-      {
-        id: "4",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_3_B_41ad9f0419.jpeg",
-      },
-      {
-        id: "5",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_9_B_abda62fc98.jpeg",
-      },
-      {
-        id: "6",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_5_B_96b8f75475.jpeg",
-      },
-      {
-        id: "7",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_5_B_96b8f75475.jpeg",
-      },
-      {
-        id: "8",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_6_B_5f06d12371.jpeg",
-      },
-      {
-        id: "9",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_7_B_1e1bfed6ee.jpeg",
-      },
-      {
-        id: "10",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_8_B_19815f0388.jpeg",
-      },
-      {
-        id: "11",
-        imageUrl:
-          "https://s3.carro57.com.br/FC/3215/7282475_9_B_ab2aadcd99.jpeg",
-      },
-    ],
-    liked: "true",
-  },
-];
+export const carDetails = {
+  id: "1",
+  carName: "Corolla",
+  carBrand: "Toyota",
+  carModel: "2.0 vvt-ie flex xei direct shift",
+  carPrice: 11590000,
+  yearFab: "2019",
+  yearModel: "2020",
+  km: "50.000",
+  fuel: "Flex",
+  carColor: "Cinza",
+  carPlate: "S**-***1",
+  options: [
+    {
+      option: "Airbag",
+    },
+    {
+      option: "Alarm",
+    },
+    {
+      option: "Ar-condicionado",
+    },
+    {
+      option: "Ar quente",
+    },
+    {
+      option: "Banco de Couro",
+    },
+    {
+      option: "Cambio automático",
+    },
+    {
+      option: "Retrovisor elétrico",
+    },
+    {
+      option: "Rodas de liga leve",
+    },
+    {
+      option: "Trava elétrica",
+    },
+    {
+      option: "Vidros elétricos",
+    },
+    {
+      option: "Banco elétrico",
+    },
+    {
+      option: "Capota Marítima",
+    },
+    {
+      option: "Chave Cópia/reserva",
+    },
+  ],
+  carDetails:
+    "CARRO EM ÓTIMO ESTADO DE CONSERVAÇÃO, VENHA CONFERIR. Financiamento facilitado, acesse nosso estoque: A melhor avaliação do seu veículo!!! Venha fazer uma visita! Veículos semi-novos de todas as marcas e modelos, revisados, com garantia e procedência. Caldarelli Veículos atua no mercado a mais de 10 anos, trazendo qualidade e um diferencial em veículos semi-novos. Disponibilizamos as melhores taxas e condições de financiamento nas principais operadoras do mercado. Aceitamos carta de crédito, seu veículo como forma de pagamento. Contamos com uma excelente equipe para melhor atende-lo, venha nos fazer uma visita, ou entre em contato pelos telefones: (43) 3324 6001 (43) 3329 9001. Embora a prática rigorosa na acuidade, precisão, exibição e atualização de dados gerais, informações e conteúdo dispostos no site, nos reservamos o direito a correções de possíveis erros de digitação, omissão de dados ou qualquer informação que venha a ser questionada por ser tratar de veiculo semi novo.",
+  shift: "Automático",
+  carImages: [
+    {
+      id: "1",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_0_B_42390ff95a.jpeg",
+    },
+    {
+      id: "2",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_1_B_473e85fcc5.jpeg",
+    },
+    {
+      id: "3",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_2_B_dc2163b7fe.jpeg",
+    },
+    {
+      id: "4",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_3_B_41ad9f0419.jpeg",
+    },
+    {
+      id: "5",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_9_B_abda62fc98.jpeg",
+    },
+    {
+      id: "6",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_5_B_96b8f75475.jpeg",
+    },
+    {
+      id: "7",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_5_B_96b8f75475.jpeg",
+    },
+    {
+      id: "8",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_6_B_5f06d12371.jpeg",
+    },
+    {
+      id: "9",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_7_B_1e1bfed6ee.jpeg",
+    },
+    {
+      id: "10",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_8_B_19815f0388.jpeg",
+    },
+    {
+      id: "11",
+      imageUrl: "https://s3.carro57.com.br/FC/3215/7282475_9_B_ab2aadcd99.jpeg",
+    },
+  ],
+  liked: "true",
+};
