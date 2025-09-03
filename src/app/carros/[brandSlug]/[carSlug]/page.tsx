@@ -17,6 +17,7 @@ import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { carTable } from "@/db/schema";
 import { RecentlyViewedTracker } from "@/utils/RecentlyViewedTracker";
+import LikeButton from "@/components/commons/likeButton";
 
 interface CategoryPageProps {
   params: Promise<{ carSlug: string }>;
@@ -37,9 +38,6 @@ export const sellerData = [
 
 const BrandPage = async ({ params }: CategoryPageProps) => {
   const { carSlug } = await params;
-  // console.log(carDetails, "DETALHES");
-
-  console.log(carSlug, "SLUG");
 
   const carsList = await db.query.carTable.findFirst({
     where: eq(carTable.slug, carSlug),
@@ -48,7 +46,7 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
     },
   });
 
-  console.log(carsList, "cars slug");
+  console.log(carsList, "carsList");
 
   return (
     <div className="">
@@ -94,9 +92,7 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
               </h2>
               <p className="uppercase">{carsList?.model}</p>
             </div>
-            <div className="">
-              <LikeComponent />
-            </div>
+            <div className="">{carsList && <LikeButton car={carsList} />}</div>
           </div>
 
           <div className="grid grid-cols-3 gap-6 mb-4">

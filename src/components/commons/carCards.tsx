@@ -1,7 +1,5 @@
-import { featuredCars } from "@/data";
 import React from "react";
 import { Card, CardContent, CardHeader } from "../ui/card";
-import { Heart } from "lucide-react";
 import Image from "next/image";
 import { formatCentsToBRL } from "@/helpers/formatCentToBRL";
 import {
@@ -11,6 +9,7 @@ import {
 } from "react-icons/tb";
 import { brandTable, carTable } from "@/db/schema";
 import Link from "next/link";
+import LikeButton from "./likeButton";
 
 interface CarCardsPorps {
   cars: (typeof carTable.$inferSelect & {
@@ -18,7 +17,7 @@ interface CarCardsPorps {
   })[];
 }
 
-const CarCards = async ({ cars }: CarCardsPorps) => {
+const CarCards = ({ cars }: CarCardsPorps) => {
   return (
     <div className="grid grid-cols-3 gap-6">
       {cars.map((car) => (
@@ -44,11 +43,7 @@ const CarCards = async ({ cars }: CarCardsPorps) => {
                     {car.model}
                   </p>
                 </div>
-                {/* {car.liked === "true" ? (
-                  <Heart fill="red" stroke="red-one" />
-                ) : (
-                  <Heart />
-                )} */}
+                <LikeButton car={car} />
               </CardHeader>
               <CardContent className="px-0 py-4">
                 <p className="font-bold text-3xl mb-4">
