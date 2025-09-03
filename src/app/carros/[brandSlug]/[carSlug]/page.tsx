@@ -13,6 +13,10 @@ import { FaWhatsapp } from "react-icons/fa6";
 import Link from "next/link";
 import { FiClock, FiMapPin } from "react-icons/fi";
 import LikeComponent from "./components/likeComponent";
+import { db } from "@/db";
+import { eq } from "drizzle-orm";
+import { carTable } from "@/db/schema";
+import { RecentlyViewedTracker } from "@/utils/RecentlyViewedTracker";
 
 interface CategoryPageProps {
   params: Promise<{ carSlug: string }>;
@@ -33,9 +37,19 @@ export const sellerData = [
 
 const BrandPage = async ({ params }: CategoryPageProps) => {
   const { carSlug } = await params;
-  console.log(carDetails, "DETALHES");
+  // console.log(carDetails, "DETALHES");
 
   console.log(carSlug, "SLUG");
+
+  const carsList = await db.query.carTable.findFirst({
+    where: eq(carTable.slug, carSlug),
+    with: {
+      brand: true,
+    },
+  });
+
+  console.log(carsList, "cars slug");
+
   return (
     <div className="">
       <Carousel
@@ -46,15 +60,15 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
         className="w-full"
       >
         <CarouselContent>
-          {carDetails.carImages.map((car) => (
+          {carsList?.imageGallery.map((url, index) => (
             <CarouselItem
-              key={car.id}
+              key={index}
               className="basis-1/1 sm:basis-1/6 md:basis-1/7 lg:basis-1/10 xl:basis-1/3"
             >
               <div className="flex flex-col items-center gap-y-2">
                 <div className="min-w-[700px] h-[575px] relative">
                   <Image
-                    src={car.imageUrl}
+                    src={url}
                     alt="carro"
                     sizes="100vw"
                     objectFit="cover"
@@ -75,10 +89,10 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
           <div className="flex justify-between mb-8">
             <div>
               <h2 className="text-3xl uppercase font-bold mb-1">
-                <span className="text-red-one">{carDetails.carBrand}</span>{" "}
-                {carDetails.carName}
+                <span className="text-red-one">{carsList?.brand.name}</span>{" "}
+                {carsList?.name}
               </h2>
-              <p className="uppercase">{carDetails.carModel}</p>
+              <p className="uppercase">{carsList?.model}</p>
             </div>
             <div className="">
               <LikeComponent />
@@ -88,27 +102,27 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
           <div className="grid grid-cols-3 gap-6 mb-4">
             <div>
               <p className="">Ano Fab.</p>
-              <p className="font-bold">{carDetails.yearFab}</p>
+              <p className="font-bold">{carsList?.yearFab}</p>
             </div>
             <div>
               <p className="">Ano Mod.</p>
-              <p className="font-bold">{carDetails.yearModel}</p>
+              <p className="font-bold">{carsList?.yearModel}</p>
             </div>
             <div>
               <p className="">Km</p>
-              <p className="font-bold">{carDetails.km}</p>
+              <p className="font-bold">{carsList?.km}</p>
             </div>
             <div>
               <p className="">Combustível</p>
-              <p className="font-bold">{carDetails.fuel}</p>
+              <p className="font-bold">{carsList?.fuel}</p>
             </div>
             <div>
               <p className="">Cor</p>
-              <p className="font-bold">{carDetails.carColor}</p>
+              <p className="font-bold">{carsList?.color}</p>
             </div>
             <div>
               <p className="">Placa</p>
-              <p className="font-bold">{carDetails.carPlate}</p>
+              <p className="font-bold">{carsList?.carPlate}</p>
             </div>
           </div>
 
@@ -117,8 +131,8 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
           <div className="mb-8">
             <h3 className="font-bold mb-4">Opcionais do Veículo</h3>
             <ul className="list-disc grid grid-cols-3 gap-2 pl-4">
-              {carDetails.options.map((details, index) => (
-                <li key={index}>{details.option}</li>
+              {carsList?.carOptions.map((details, index) => (
+                <li key={index}>{details}</li>
               ))}
             </ul>
           </div>
@@ -127,13 +141,15 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
 
           <div>
             <h3 className="font-bold mb-4">Descrição</h3>
-            <p className="text-justify">{carDetails.carDetails}</p>
+            <p className="text-justify">{carsList?.aditionalDetails}</p>
           </div>
         </div>
 
         <div className="text-gray-one relative z-20 bg-white top-[-50px] p-8 rounded-2xl max-w-[325px] w-full h-fit shadow-md border border-gray-300 flex flex-col items-center gap-4">
           <p className="text-3xl font-bold">
-            {formatCentsToBRL(carDetails.carPrice)}
+            {carsList?.priceInCents !== undefined
+              ? formatCentsToBRL(carsList.priceInCents)
+              : "--"}
           </p>
           <div className="flex flex-col gap-y-2 mb-2">
             {sellerData.map((seller) => (
@@ -175,6 +191,7 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
       <div className="my-10">
         <FinancingAlert />
       </div>
+      <RecentlyViewedTracker slug={carsList?.slug} />
     </div>
   );
 };
