@@ -1,6 +1,5 @@
 import FinancingAlert from "@/components/commons/financingAlert";
 import React from "react";
-import { carDetails } from "@/data";
 import {
   Carousel,
   CarouselContent,
@@ -12,7 +11,6 @@ import { formatCentsToBRL } from "@/helpers/formatCentToBRL";
 import { FaWhatsapp } from "react-icons/fa6";
 import Link from "next/link";
 import { FiClock, FiMapPin } from "react-icons/fi";
-import LikeComponent from "./components/likeComponent";
 import { db } from "@/db";
 import { eq } from "drizzle-orm";
 import { carTable } from "@/db/schema";
