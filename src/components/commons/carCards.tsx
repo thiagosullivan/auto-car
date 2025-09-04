@@ -32,12 +32,12 @@ const CarCards = ({ cars }: CarCardsPorps) => {
                 fill
               />
             </div>
-            <div className="p-4 text-gray-one">
+            <div className="p-4 ">
               <CardHeader className="flex justify-between p-0">
                 <div>
-                  <div className="flex gap-1 font-bold text-gray-one text-2xl uppercase">
+                  <div className="flex gap-1 font-bold  text-2xl uppercase">
                     <p className="text-red-one">{car.brand.name}</p>
-                    <p>{car.name}</p>
+                    <p className="text-foreground">{car.name}</p>
                   </div>
                   <p className="uppercase text-sm text-gray-two min-h-5">
                     {car.model}
@@ -45,8 +45,8 @@ const CarCards = ({ cars }: CarCardsPorps) => {
                 </div>
                 <LikeButton car={car} />
               </CardHeader>
-              <CardContent className="px-0 py-4">
-                <p className="font-bold text-3xl mb-4">
+              <CardContent className="px-0 py-4 text-foreground">
+                <p className="font-bold text-3xl mb-4 ">
                   {formatCentsToBRL(car.priceInCents)}
                 </p>
                 <div className="flex gap-2 justify-between items-center">

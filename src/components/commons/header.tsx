@@ -1,5 +1,7 @@
 "use client";
 
+import { ThemeToggle } from "@/app/_components/theme-toggle";
+import { useTheme } from "@/hook/use-theme";
 import { Heart, Search } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -39,17 +41,27 @@ const navLinks = [
 
 const Header = () => {
   const pathname = usePathname();
+  const { theme, toggleTheme } = useTheme();
 
   return (
-    <header className="shadow-md bg-white py-4">
+    <header className="shadow-md bg-card py-4">
       <div className="mx-auto max-w-7xl w-full px-4 flex justify-between items-center">
         <Link href="/">
-          <Image
-            src="/auto-car-short-logo.png"
-            width={84}
-            height={71}
-            alt="Auto Car"
-          />
+          {theme === "light" ? (
+            <Image
+              src="/auto-car-short-logo.png"
+              width={84}
+              height={71}
+              alt="Auto Car"
+            />
+          ) : (
+            <Image
+              src="/auto-car-short-logo-dark.png"
+              width={84}
+              height={71}
+              alt="Auto Car"
+            />
+          )}
         </Link>
         <nav>
           <ul className="flex gap-4">
@@ -57,7 +69,7 @@ const Header = () => {
               <li key={link.name}>
                 <Link
                   href={link.href}
-                  className={`text-gray-one ${
+                  className={` ${
                     pathname === link.href && "text-red-one font-semibold"
                   }`}
                 >
@@ -67,9 +79,10 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-        <div className="flex items-center gap-3 text-gray-one">
+        <div className="flex items-center gap-3 ">
           <Search />
           <Heart />
+          <ThemeToggle />
         </div>
       </div>
     </header>

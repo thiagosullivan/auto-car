@@ -8,7 +8,7 @@ const FinancingAlert = () => {
         Faça uma simulação de financiamento com a agente
       </p>
       <Button
-        className="bg-white text-red-one font-bold py-6 px-10 hover:bg-gray-one hover:text-white"
+        className="bg-white text-red-one font-bold py-6 px-10 hover:bg-primary hover:text-white"
         asChild
       >
         <Link href="/financiamento">Aqui</Link>

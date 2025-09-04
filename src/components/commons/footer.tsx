@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -10,6 +11,7 @@ import {
   FaLinkedinIn,
   FaYoutube,
 } from "react-icons/fa6";
+import { useTheme } from "@/hook/use-theme";
 
 const navLinks = [
   {
@@ -47,16 +49,26 @@ const navLinks = [
 ];
 
 const Footer = () => {
+  const { theme, toggleTheme } = useTheme();
   return (
-    <footer className="bg-white shadow-[0px_0px_10px_2px_#00000024]">
+    <footer className="bg-card shadow-[0px_0px_10px_2px_#00000024]">
       <div className="w-full max-w-7xl mx-auto px-4 py-10">
         <Link href="/" className="flex justify-center mb-10">
-          <Image
-            src="/auto-car-full-logo.png"
-            alt="Auto Car"
-            width={275}
-            height={42}
-          />
+          {theme === "light" ? (
+            <Image
+              src="/auto-car-full-logo.png"
+              alt="Auto Car"
+              width={275}
+              height={42}
+            />
+          ) : (
+            <Image
+              src="/auto-car-full-logo-dark.png"
+              alt="Auto Car"
+              width={275}
+              height={42}
+            />
+          )}
         </Link>
         <div className="flex justify-evenly gap-3">
           <div>
@@ -67,7 +79,7 @@ const Footer = () => {
                   <li key={link.name}>
                     <Link
                       href={link.href}
-                      className="text-gray-one text-sm hover:text-red-one"
+                      className="text-sm hover:text-red-one"
                     >
                       {link.name}
                     </Link>

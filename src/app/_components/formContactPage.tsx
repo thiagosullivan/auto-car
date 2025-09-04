@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -75,75 +76,80 @@ const FormContactPage = () => {
   }
 
   return (
-    <div className="bg-white p-8 rounded-2xl shadow-md relative">
-      <Form {...form}>
-        {loading && (
-          <div className="bg-black flex w-full h-full absolute top-0 left-0 rounded-2xl opacity-60 justify-center items-center">
-            <Loader2 className="animate-spin" />
-          </div>
-        )}
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          className={`space-y-4 w-full ${loading && "pointer-events-none"}`}
-        >
-          <FormField
-            control={form.control}
-            name="name"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Nome" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Email (opcional)" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="phone"
-            render={({ field }) => (
-              <FormItem>
-                <FormControl>
-                  <Input placeholder="Telefone" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <FormField
-            control={form.control}
-            name="message"
-            render={({ field }) => (
-              <FormItem className="">
-                <FormControl>
-                  <Textarea
-                    placeholder="Mensagem"
-                    {...field}
-                    className="resize-none"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-          <Button className="w-full bg-red-one cursor-pointer" type="submit">
-            Enviar
-          </Button>
-        </form>
-      </Form>
-    </div>
+    <Card className="p-8 rounded-2xl shadow-md relative">
+      <CardContent>
+        <Form {...form}>
+          {loading && (
+            <div className="bg-black flex w-full h-full absolute top-0 left-0 rounded-2xl opacity-60 justify-center items-center">
+              <Loader2 className="animate-spin" />
+            </div>
+          )}
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className={`space-y-4 w-full ${loading && "pointer-events-none"}`}
+          >
+            <FormField
+              control={form.control}
+              name="name"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Nome" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Email (opcional)" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="phone"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input placeholder="Telefone" {...field} />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="message"
+              render={({ field }) => (
+                <FormItem className="">
+                  <FormControl>
+                    <Textarea
+                      placeholder="Mensagem"
+                      {...field}
+                      className="resize-none"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <Button
+              className="w-full bg-red-one cursor-pointer text-white"
+              type="submit"
+            >
+              Enviar
+            </Button>
+          </form>
+        </Form>
+      </CardContent>
+    </Card>
   );
 };
 

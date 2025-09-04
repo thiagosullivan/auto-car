@@ -132,7 +132,10 @@ const FormContactFooter = () => {
               </FormItem>
             )}
           />
-          <Button className="w-full bg-red-one cursor-pointer" type="submit">
+          <Button
+            className="w-full bg-red-one cursor-pointer text-white"
+            type="submit"
+          >
             Enviar
           </Button>
         </form>

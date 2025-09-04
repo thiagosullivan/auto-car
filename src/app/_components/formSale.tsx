@@ -246,7 +246,7 @@ const FormSale = () => {
                 id="terms"
                 checked={isChecked}
                 onCheckedChange={(checked) => setIsChecked(checked as boolean)}
-                className="bg-white border-gray-300"
+                className="border-gray-300"
               />
               <div className="flex gap-1">
                 Lí e concordo com a <Terms />.
@@ -255,7 +255,7 @@ const FormSale = () => {
           </div>
 
           <Button
-            className="bg-red-one cursor-pointer py-6 px-14"
+            className="bg-red-one cursor-pointer py-6 px-14 text-white"
             type="submit"
             disabled={!isChecked}
           >

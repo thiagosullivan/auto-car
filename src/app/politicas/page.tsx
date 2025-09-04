@@ -2,7 +2,7 @@ import React from "react";
 
 const PoliticsPage = () => {
   return (
-    <div className="w-full max-w-7xl mx-auto px-4 my-10 text-justify text-gray-one">
+    <div className="w-full max-w-7xl mx-auto px-4 my-10 text-justify ">
       <div className="bg-white p-10 rounded-2xl shadow-lg">
         <h1 className="text-2xl font-bold mb-4">Políticas de Privacidade</h1>
         <p>

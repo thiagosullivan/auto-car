@@ -50,7 +50,7 @@ const FavoritePage = () => {
 
   if (loading)
     return (
-      <div className="w-full max-w-7xl mx-auto my-10 text-gray-one px-4">
+      <div className="w-full max-w-7xl mx-auto my-10  px-4">
         <h1 className="text-3xl font-bold mb-8">Meus favoritos</h1>
         <div className="mb-8">
           <Skeleton className="h-[185px] w-[210px]" />
@@ -60,7 +60,7 @@ const FavoritePage = () => {
     );
 
   return (
-    <div className="w-full max-w-7xl mx-auto my-10 text-gray-one px-4">
+    <div className="w-full max-w-7xl mx-auto my-10  px-4">
       <h1 className="text-3xl font-bold mb-8">Meus favoritos</h1>
       <div className="mb-8">
         {favoriteCars.length > 0 ? (

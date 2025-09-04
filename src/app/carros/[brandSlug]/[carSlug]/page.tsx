@@ -81,14 +81,14 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
         </div> */}
       </Carousel>
       <div className="w-full max-w-7xl mx-auto relative top-3/12 flex justify-around gap-4">
-        <div className="text-gray-one relative z-20 bg-white top-[-50px] p-8 rounded-2xl max-w-[850px] w-full shadow-md border border-gray-300">
+        <div className=" relative z-20 bg-background top-[-50px] p-8 rounded-2xl max-w-[850px] w-full shadow-md border border-gray-300">
           <div className="flex justify-between mb-8">
             <div>
               <h2 className="text-3xl uppercase font-bold mb-1">
                 <span className="text-red-one">{carsList?.brand.name}</span>{" "}
                 {carsList?.name}
               </h2>
-              <p className="uppercase">{carsList?.model}</p>
+              <p className="uppercase text-foreground">{carsList?.model}</p>
             </div>
             <div className="">{carsList && <LikeButton car={carsList} />}</div>
           </div>
@@ -139,7 +139,7 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
           </div>
         </div>
 
-        <div className="text-gray-one relative z-20 bg-white top-[-50px] p-8 rounded-2xl max-w-[325px] w-full h-fit shadow-md border border-gray-300 flex flex-col items-center gap-4">
+        <div className=" relative z-20 bg-background top-[-50px] p-8 rounded-2xl max-w-[325px] w-full h-fit shadow-md border border-gray-300 flex flex-col items-center gap-4">
           <p className="text-3xl font-bold">
             {carsList?.priceInCents !== undefined
               ? formatCentsToBRL(carsList.priceInCents)
@@ -160,7 +160,7 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
             ))}
             <Link
               href="/contato"
-              className="bg-red-one hover:bg-gray-one rounded-md px-2 py-4 text-center font-bold text-white h-12 flex items-center justify-center"
+              className="bg-red-one hover:bg-primary rounded-md px-2 py-4 text-center font-bold text-white h-12 flex items-center justify-center"
             >
               Envie sua proposta
             </Link>

@@ -15,7 +15,7 @@ const Terms = () => {
             política de privacidade
           </p>
         </DialogTrigger>
-        <DialogContent className="sm:max-w-4xl max-h-[800px] overflow-y-auto text-gray-one">
+        <DialogContent className="sm:max-w-4xl max-h-[800px] overflow-y-auto ">
           <DialogHeader>
             <DialogTitle className="font-bold text-2xl">
               Política Privacidade

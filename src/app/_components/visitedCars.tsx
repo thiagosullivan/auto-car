@@ -77,7 +77,7 @@ export const VisitedCarCard = ({ cars }: VisitedCarCardProps) => {
                   </div>
                   <div className="flex flex-col bg-white p-2 text-sm uppercase">
                     <div className="flex gap-x-1">
-                      <p className="font-bold">{car.brand.name}</p>
+                      <p className="font-bold text-primary">{car.brand.name}</p>
                       <p className="text-[#929292]">{car.name}</p>
                     </div>
                     <p className="min-h-5">{car.model}</p>

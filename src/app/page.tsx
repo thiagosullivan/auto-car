@@ -19,7 +19,7 @@ export default async function Home() {
   console.log(cars, "CARS");
 
   return (
-    <main className="mt-6 text-gray-one">
+    <main className="mt-6 ">
       {/* Hero */}
       <section className="w-full max-w-7xl mx-auto max-h-[485px] h-full relative  px-4 mb-12">
         <Image
