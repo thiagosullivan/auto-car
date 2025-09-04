@@ -1,8 +1,7 @@
 import { z } from "zod";
 
 export const financingFormSchema = z.object({
-  brand: z.string().min(2, "A marca é obrigatória"),
-  model: z.string().min(2, "O modelo é obrigatório"),
+  carInfos: z.string().min(2, "A marca é obrigatória"),
   entryValue: z.string().min(1, "É obrigatório enviar um valor"),
   installmentPayment: z
     .string()

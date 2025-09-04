@@ -26,9 +26,11 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { toast } from "sonner";
+import { Loader2 } from "lucide-react";
 
 const FormSale = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const form = useForm<SaleFormData>({
     resolver: zodResolver(saleSchema),
@@ -45,19 +47,60 @@ const FormSale = () => {
     },
   });
 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = form;
+
   async function onSubmit(data: SaleFormData) {
-    console.log(data, "submit");
-    toast.success("E-mail enviado com sucesso!", {
-      style: { backgroundColor: "green", color: "white" },
-    });
+    console.log(data);
+
+    console.log("CLICKADO");
+
+    try {
+      setLoading(true);
+      const response = await fetch("/api/sell-form", {
+        method: "POST",
+        body: JSON.stringify(data),
+      });
+
+      const result = await response.json();
+      console.log("Resposta da API:", result);
+
+      if (response.ok) {
+        // Limpa o formulário
+        reset();
+
+        toast.success("E-mail enviado com sucesso!", {
+          style: { backgroundColor: "green", color: "white" },
+        });
+      } else {
+        throw new Error(result.error || "Erro ao enviar e-mail");
+      }
+    } catch (error) {
+      console.error("Erro:", error);
+      toast.error("Houve uma falha no envio do e-mail!", {
+        style: { backgroundColor: "red", color: "white" },
+      });
+    } finally {
+      setLoading(false);
+      console.log("FINALLY");
+    }
   }
 
   return (
-    <div>
+    <div className="relative p-6">
       <Form {...form}>
+        {loading && (
+          <div className="bg-black flex w-full h-full absolute top-0 left-0 rounded-2xl opacity-20 justify-center items-center">
+            <Loader2 className="animate-spin" />
+          </div>
+        )}
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className="space-y-2  w-full"
+          className={`space-y-2  w-full ${loading && "pointer-events-none"}`}
         >
           <div className="mb-12">
             <h2 className="mb-4 text-xl font-bold">Dados do Veículo</h2>
@@ -154,6 +197,7 @@ const FormSale = () => {
                           <SelectItem value="Flex">Flex</SelectItem>
                           <SelectItem value="Diesel">Diesel</SelectItem>
                           <SelectItem value="GNV">GNV</SelectItem>
+                          <SelectItem value="Elétrico">Elétrico</SelectItem>
                           <SelectItem value="Outro">Outro</SelectItem>
                         </SelectContent>
                       </Select>
