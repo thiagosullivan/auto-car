@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/commons/header";
 import Footer from "@/components/commons/footer";
 import { ThemeProvider } from "@/components/providers/theme-provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const poppinsSans = Poppins({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
           <Header />
           {children}
           <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>

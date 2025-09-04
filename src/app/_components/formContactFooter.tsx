@@ -17,6 +17,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const FormContactFooter = () => {
   const [loading, setLoading] = useState(false);
@@ -44,7 +45,7 @@ const FormContactFooter = () => {
 
     try {
       setLoading(true);
-      const response = await fetch("/api/sendEmail", {
+      const response = await fetch("/api/contact-form", {
         method: "POST",
         body: JSON.stringify(data),
       });
@@ -55,18 +56,17 @@ const FormContactFooter = () => {
       if (response.ok) {
         // Limpa o formulário
         reset();
-
-        // toast.success(
-        //   "E-mail enviado com sucesso!"
-        // );
+        toast.success("E-mail enviado com sucesso!", {
+          style: { backgroundColor: "green", color: "white" },
+        });
       } else {
         throw new Error(result.error || "Erro ao enviar e-mail");
       }
     } catch (error) {
       console.error("Erro:", error);
-      // toast.error(
-      //   "Houve uma falha no envio do e-mail!"
-      // );
+      toast.error("Houve uma falha no envio do e-mail!", {
+        style: { backgroundColor: "red", color: "white" },
+      });
     } finally {
       setLoading(false);
       console.log("FINALLY");

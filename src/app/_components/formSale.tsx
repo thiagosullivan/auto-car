@@ -25,6 +25,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
+import { toast } from "sonner";
 
 const FormSale = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -46,6 +47,9 @@ const FormSale = () => {
 
   async function onSubmit(data: SaleFormData) {
     console.log(data, "submit");
+    toast.success("E-mail enviado com sucesso!", {
+      style: { backgroundColor: "green", color: "white" },
+    });
   }
 
   return (
