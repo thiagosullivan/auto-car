@@ -7,6 +7,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React from "react";
+import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarTrigger,
+} from "../ui/menubar";
+import SearchForm from "./search-form";
+import { Popover, PopoverContent, PopoverTrigger } from "../ui/popover";
 
 const navLinks = [
   {
@@ -80,8 +90,20 @@ const Header = () => {
           </ul>
         </nav>
         <div className="flex items-center gap-3 ">
-          <Search />
-          <Heart />
+          <Popover>
+            <PopoverTrigger>
+              <Search />
+            </PopoverTrigger>
+            <PopoverContent className="w-[500px]">
+              <SearchForm />
+            </PopoverContent>
+          </Popover>
+          <Link
+            href="/favoritos"
+            className="hover:text-red-one p-0 bg-transparent hover:bg-transparent"
+          >
+            <Heart />
+          </Link>
           <ThemeToggle />
         </div>
       </div>

@@ -6,43 +6,34 @@ import { Heart } from "lucide-react";
 import { brandTable, carTable } from "@/db/schema";
 import { useFavorites } from "@/hook/useFavorites";
 
+interface Car {
+  id: string;
+  name: string;
+  model: string;
+  slug: string;
+  color: string;
+  fuel: string;
+  gearbox: string;
+  km: string;
+  priceInCents: number;
+  imageUrl: string;
+  yearFab: string;
+  yearModel: string;
+  brand: {
+    id: string;
+    name: string;
+    slug: string;
+    imageUrl: string;
+  } | null;
+}
+
 interface LikeButtonProps {
-  car: typeof carTable.$inferSelect & {
-    brand: typeof brandTable.$inferSelect;
-  };
+  car: Car;
 }
 
 const LikeButton = ({ car }: LikeButtonProps) => {
-  //   const [isFavorited, setIsFavorited] = useState(false);
   const { favorites, toggleFavorite } = useFavorites();
   const isFavorite = favorites.includes(car.slug);
-
-  //   useEffect(() => {
-  //     const currentFavorites = JSON.parse(
-  //       localStorage.getItem("likedCars") || "[]"
-  //     );
-  //     setIsFavorited(currentFavorites.includes(car.slug));
-  //   }, [car.slug]);
-
-  //   const handleFavorite = () => {
-  //     const currentFavorites = JSON.parse(
-  //       localStorage.getItem("likedCars") || "[]"
-  //     );
-
-  //     let updatedFavorites: string[];
-
-  //     if (currentFavorites.includes(car.slug)) {
-  //       updatedFavorites = currentFavorites.filter(
-  //         (slug: string) => slug !== car.slug
-  //       );
-  //       setIsFavorited(false);
-  //     } else {
-  //       updatedFavorites = [car.slug, ...currentFavorites];
-  //       setIsFavorited(true);
-  //     }
-
-  //     localStorage.setItem("likedCars", JSON.stringify(updatedFavorites));
-  //   };
 
   return (
     <>

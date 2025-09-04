@@ -69,7 +69,7 @@ export const carTable = pgTable("car", {
   yearFab: text("year_fab").notNull(),
   yearModel: text("year_model").notNull(),
   carPlate: text("car_plate").notNull(),
-  createdArt: timestamp("created_at").notNull(),
+  createdAt: timestamp("created_at").notNull(),
 });
 
 export const brandTable = pgTable("brand", {
@@ -77,7 +77,7 @@ export const brandTable = pgTable("brand", {
   name: text().notNull(),
   slug: text().notNull().unique(),
   imageUrl: text("image_url").notNull(),
-  createdArt: timestamp("created_at").notNull(),
+  createdAt: timestamp("created_at").notNull(),
 });
 
 export const brandRelations = relations(brandTable, (params) => {

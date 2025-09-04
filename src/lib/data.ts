@@ -1,35 +1,46 @@
 import { db } from "@/db";
-import { carTable } from "@/db/schema";
-import { eq } from "drizzle-orm";
-import { cache } from "react";
+import { ilike, or, inArray, sql } from "drizzle-orm";
 
-// Busca com cache para evitar múltiplas requests
-export const getCars = cache(async () => {
+export async function getCars(search?: string) {
+  console.log(search, "SEARCH DATA");
   try {
-    const cars = await db.query.carTable.findMany({
+    if (!search) {
+      // Busca todos os carros (sem filtro)
+      return await db.query.carTable.findMany({
+        with: {
+          brand: true,
+        },
+        orderBy: (cars, { desc }) => [desc(cars.createdAt)],
+      });
+    }
+
+    // Busca simplificada - primeiro busca os carros, depois filtra no código se necessário
+    // Isso evita os problemas complexos de JOIN do Drizzle
+    const allCars = await db.query.carTable.findMany({
       with: {
         brand: true,
       },
+      orderBy: (cars, { desc }) => [desc(cars.createdAt)],
     });
-    return cars;
+
+    console.log(allCars, "ALL CARS DATA");
+
+    // Filtro no código JavaScript (simples e eficiente para quantidades normais de carros)
+    const searchTerm = search.toLowerCase();
+
+    const filteredCars = allCars.filter((car) => {
+      return (
+        car.name.toLowerCase().includes(searchTerm) ||
+        car.model.toLowerCase().includes(searchTerm) ||
+        car.fuel.toLowerCase().includes(searchTerm) ||
+        car.brand?.name.toLowerCase().includes(searchTerm)
+      );
+    });
+    console.log(filteredCars, "FILTERED CARS DATA");
+
+    return filteredCars;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch cars.");
   }
-});
-
-// Busca específica com parâmetros
-export const getCarBySlug = cache(async (slug: string) => {
-  try {
-    const car = await db.query.carTable.findFirst({
-      where: eq(carTable.slug, slug),
-      with: {
-        brand: true,
-      },
-    });
-    return car;
-  } catch (error) {
-    console.error("Database Error:", error);
-    throw new Error("Failed to fetch car.");
-  }
-});
+}

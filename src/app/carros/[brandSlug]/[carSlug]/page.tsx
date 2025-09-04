@@ -16,6 +16,7 @@ import { eq } from "drizzle-orm";
 import { carTable } from "@/db/schema";
 import { RecentlyViewedTracker } from "@/utils/RecentlyViewedTracker";
 import LikeButton from "@/components/commons/likeButton";
+import { notFound } from "next/navigation";
 
 interface CategoryPageProps {
   params: Promise<{ carSlug: string }>;
@@ -45,6 +46,10 @@ const BrandPage = async ({ params }: CategoryPageProps) => {
   });
 
   console.log(carsList, "carsList");
+
+  if (!carsList) {
+    return notFound();
+  }
 
   return (
     <div className="">
