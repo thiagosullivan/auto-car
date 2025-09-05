@@ -33,9 +33,9 @@ export const colorEnum = pgEnum("color", [
 export const gearboxEnum = pgEnum("gearbox", [
   "manual",
   "automático",
-  "automático sequencial",
-  "CVT",
-  "auto/dupla embreagem",
+  "automático_sequencial",
+  "cvt",
+  "auto_dupla_embreagem",
   "semiautomático",
 ]);
 
@@ -49,6 +49,15 @@ export const fuelEnum = pgEnum("fuel", [
   "outro",
 ]);
 
+export const bodyTypeEnum = pgEnum("body_type", [
+  "sedã",
+  "hatch",
+  "coupe",
+  "pickup",
+]);
+
+export const conditionEnum = pgEnum("condition", ["novo", "seminovo", "usado"]);
+
 export const carTable = pgTable("car", {
   id: uuid().primaryKey().defaultRandom(),
   brandId: uuid("brand_id")
@@ -60,16 +69,18 @@ export const carTable = pgTable("car", {
   color: colorEnum().notNull(),
   fuel: fuelEnum().notNull(),
   gearbox: gearboxEnum().notNull(),
+  condition: conditionEnum().notNull(),
   km: text().notNull(),
   aditionalDetails: text("aditional_details").notNull(),
   carOptions: text("car_options").array().notNull().default([]),
-  priceInCents: integer("prince_in_cents").notNull(),
+  priceInCents: integer("price_in_cents").notNull(),
   imageUrl: text("image_url").notNull(),
   imageGallery: text("image_gallery").array().notNull().default([]),
   yearFab: text("year_fab").notNull(),
   yearModel: text("year_model").notNull(),
   carPlate: text("car_plate").notNull(),
-  createdAt: timestamp("created_at").notNull(),
+  bodyType: bodyTypeEnum().notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const brandTable = pgTable("brand", {
@@ -77,7 +88,7 @@ export const brandTable = pgTable("brand", {
   name: text().notNull(),
   slug: text().notNull().unique(),
   imageUrl: text("image_url").notNull(),
-  createdAt: timestamp("created_at").notNull(),
+  createdAt: timestamp("created_at").notNull().defaultNow(),
 });
 
 export const brandRelations = relations(brandTable, (params) => {
