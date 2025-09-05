@@ -63,7 +63,7 @@ export const VisitedCarCard = ({ cars }: VisitedCarCardProps) => {
         <div className="flex flex-col">
           <h3 className="font-bold mb-4">Últimos veículos visitados</h3>
           <div className="flex gap-x-3">
-            {recentlyViewedCars.map((car, index) => (
+            {recentlyViewedCars.slice(0, 4).map((car, index) => (
               <Link href={`/carros/${car.brand.slug}/${car.slug}`} key={index}>
                 <div className="border-1 border-gray-300">
                   <div className="w-[185px] h-[150px] relative">
