@@ -2,7 +2,6 @@ import FiltersPanel from "@/components/commons/aside-form";
 import CarList from "@/components/commons/carCards";
 import ClearFiltersButton from "@/components/commons/clear-filter-button";
 import FinancingAlert from "@/components/commons/financingAlert";
-
 import { getBrands, getCars, getFilterOptions } from "@/lib/data";
 import React from "react";
 
@@ -23,6 +22,7 @@ interface PageProps {
     cambio?: string;
     carroceria?: string;
     cor?: string;
+    carType?: string; // Novo parâmetro
   };
 }
 
@@ -67,7 +67,14 @@ const StockPage = async ({ searchParams }: PageProps) => {
       | "semiautomático"
     >,
     carroceria: searchParams.carroceria?.split(",") as Array<
-      "sedã" | "hatch" | "coupe" | "pickup"
+      | "sedã"
+      | "hatch"
+      | "coupe"
+      | "pickup"
+      | "conversivel"
+      | "furgão"
+      | "suv"
+      | "utilitário"
     >,
     cor: searchParams.cor?.split(",") as Array<
       | "preto"
@@ -85,6 +92,10 @@ const StockPage = async ({ searchParams }: PageProps) => {
       | "roxo"
       | "rosa"
     >,
+    // NOVO FILTRO: Tipo de veículo
+    carType: searchParams.carType?.split(",") as Array<
+      "automóvel" | "moto" | "nautico"
+    >,
   };
 
   const [cars, brands, filterOptions] = await Promise.all([
@@ -101,19 +112,20 @@ const StockPage = async ({ searchParams }: PageProps) => {
       value !== null &&
       (!Array.isArray(value) || value.length > 0) &&
       key !== "search"
-    ); // search pode ser string vazia
+    );
   });
 
   return (
-    <div className="w-full max-w-7xl mx-auto my-10 px-4">
+    <div className="w-full mx-auto my-10 px-4">
       <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold mb-2">Catálogo de Carros</h1>
+        <h1 className="text-3xl font-bold mb-2">Catálogo de Veículos</h1>{" "}
+        {/* Atualizado título */}
         <p className="text-gray-600 text-lg">
-          Encontre o carro perfeito para você
+          Encontre o veículo perfeito para você {/* Atualizado texto */}
         </p>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         {/* Painel de Filtros */}
         <div className="lg:col-span-1">
           <FiltersPanel
@@ -124,7 +136,7 @@ const StockPage = async ({ searchParams }: PageProps) => {
         </div>
 
         {/* Lista de Carros */}
-        <div className="lg:col-span-3">
+        <div className="lg:col-span-4">
           {cars.length > 0 ? (
             <CarList cars={cars} searchTerm={searchParams.search} />
           ) : (
@@ -132,8 +144,8 @@ const StockPage = async ({ searchParams }: PageProps) => {
               <div className="text-6xl mb-4">🚗</div>
               <p className="text-gray-600 text-lg">
                 {hasActiveFilters || searchParams.search
-                  ? "Nenhum carro encontrado com os filtros selecionados."
-                  : "Nenhum carro foi cadastrado."}
+                  ? "Nenhum veículo encontrado com os filtros selecionados."
+                  : "Nenhum veículo foi cadastrado."}
               </p>
 
               {/* Botão Client Component */}

@@ -54,12 +54,24 @@ export const bodyTypeEnum = pgEnum("body_type", [
   "hatch",
   "coupe",
   "pickup",
+  "conversivel",
+  "furgão",
+  "suv",
+  "utilitário",
+  "moto",
+  "nautico",
 ]);
 
 export const conditionEnum = pgEnum("condition", ["novo", "seminovo", "usado"]);
+export const carTypeEnum = pgEnum("cart_type", [
+  "automóvel",
+  "moto",
+  "nautico",
+]);
 
 export const carTable = pgTable("car", {
   id: uuid().primaryKey().defaultRandom(),
+  carType: carTypeEnum("car_type").notNull(),
   brandId: uuid("brand_id")
     .notNull()
     .references(() => brandTable.id),

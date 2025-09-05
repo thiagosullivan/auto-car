@@ -106,6 +106,38 @@ export default function FiltersPanel({
           </div>
         </div>
 
+        {/* Tipo - ATUALIZADO com "seminovo" */}
+        <div>
+          <h3 className="font-medium mb-3">Tipo de Veículo</h3>
+          <div className="space-y-2">
+            {filterOptions.tiposVeiculo.map((tipo) => (
+              <label key={tipo} className="flex items-center">
+                <input
+                  type="checkbox"
+                  checked={currentFilters.carType?.includes(tipo) || false}
+                  onChange={(e) => {
+                    const current = currentFilters.carType || [];
+                    const newValue = e.target.checked
+                      ? [...current, tipo]
+                      : current.filter((t: string) => t !== tipo);
+                    handleFilterChange("carType", newValue);
+                  }}
+                  className="rounded text-red-600"
+                />
+                <span className="ml-2 text-sm capitalize">
+                  {tipo === "automóvel"
+                    ? "Automóvel"
+                    : tipo === "moto"
+                    ? "Moto"
+                    : tipo === "nautico"
+                    ? "Náutico"
+                    : tipo}
+                </span>
+              </label>
+            ))}
+          </div>
+        </div>
+
         {/* Estado - ATUALIZADO com "seminovo" */}
         <div>
           <h3 className="font-medium mb-3">Estado</h3>

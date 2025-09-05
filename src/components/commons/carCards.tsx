@@ -70,7 +70,7 @@ export default function CarList({ cars, searchTerm }: CarListProps) {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {cars.map((car) => (
           <Link
             href={
@@ -80,7 +80,7 @@ export default function CarList({ cars, searchTerm }: CarListProps) {
             }
             key={car.id}
           >
-            <Card className="max-w-[380px] p-0 gap-0 rounded-2xl overflow-hidden">
+            <Card className="max-w-[380px] p-0 gap-0 rounded-2xl overflow-hidden relative">
               <div className="w-[380px] h-[315px] relative">
                 <Image
                   src={car.imageUrl}
@@ -90,10 +90,10 @@ export default function CarList({ cars, searchTerm }: CarListProps) {
                   fill
                 />
               </div>
-              <div className="p-4 ">
+              <div className="p-4">
                 <CardHeader className="flex justify-between p-0">
                   <div>
-                    <div className="flex gap-1 font-bold text-2xl uppercase">
+                    <div className="flex gap-1 font-bold text-xl uppercase">
                       <p className="text-red-one">{car.brand?.name ?? ""}</p>
                       <p className="text-foreground">{car.name}</p>
                     </div>
@@ -108,15 +108,15 @@ export default function CarList({ cars, searchTerm }: CarListProps) {
                     {formatCentsToBRL(car.priceInCents)}
                   </p>
                   <div className="flex gap-2 justify-between items-center">
-                    <div className="flex items-center justify-center gap-1">
+                    <div className="flex flex-col items-center justify-center gap-1">
                       <TbBrandSpeedtest size={20} />
                       <p className="text-sm">{car.km} km</p>
                     </div>
-                    <div className="flex items-center justify-center gap-1">
+                    <div className="flex flex-col items-center justify-center gap-1">
                       <TbDropletFilled size={20} />
                       <p className="text-sm">{car.fuel}</p>
                     </div>
-                    <div className="flex items-center justify-center gap-1">
+                    <div className="flex flex-col items-center justify-center gap-1">
                       <TbManualGearbox size={20} />
                       <p className="text-sm">{car.gearbox}</p>
                     </div>

@@ -1,3 +1,4 @@
+// components/commons/clear-filter-button.tsx
 "use client";
 
 interface ClearFiltersButtonProps {
@@ -10,6 +11,7 @@ export default function ClearFiltersButton({
   if (!hasFilters) return null;
 
   const handleClear = () => {
+    // Remove todos os parâmetros incluindo carType
     window.location.href = "/estoque";
   };
 

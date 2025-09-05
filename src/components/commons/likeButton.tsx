@@ -40,7 +40,7 @@ const LikeButton = ({ car }: LikeButtonProps) => {
       <Button
         variant="ghost"
         size="default"
-        className="h-[45px] w-[45px] min-w-0 p-0 hover:bg-transparent"
+        className="h-[45px] w-[45px] min-w-0 p-0 hover:bg-transparent absolute top-0 right-0"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -51,7 +51,12 @@ const LikeButton = ({ car }: LikeButtonProps) => {
         {isFavorite ? (
           <Heart stroke="#ee212b" fill="#ee212b" style={{ scale: 2 }} />
         ) : (
-          <Heart stroke="#494949" style={{ scale: 2 }} className="" />
+          <Heart
+            stroke="#494949"
+            fill="#494949"
+            style={{ scale: 2 }}
+            className=""
+          />
         )}
       </Button>
     </>

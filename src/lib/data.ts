@@ -29,6 +29,7 @@ export async function getCars(filters: CarFilters = {}) {
       cambio,
       carroceria,
       cor,
+      carType,
     } = filters;
 
     // Buscar todos os carros primeiro
@@ -141,11 +142,39 @@ export async function getCars(filters: CarFilters = {}) {
       filteredCars = filteredCars.filter((car) => cor.includes(car.color));
     }
 
+    if (carType && carType.length > 0) {
+      filteredCars = filteredCars.filter((car) => {
+        // Você precisa determinar o tipo do veículo baseado em alguma lógica
+        // Exemplo: se o carro tem bodyType "pickup" ou "suv" pode ser considerado "automóvel"
+        // Ou você pode ter um campo específico no banco para isso
+        const vehicleType = determineVehicleType(car);
+        return carType.includes(vehicleType);
+      });
+    }
+
     return filteredCars;
   } catch (error) {
     console.error("Database Error:", error);
     throw new Error("Failed to fetch cars.");
   }
+}
+
+// Função auxiliar para determinar o tipo do veículo
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+function determineVehicleType(car: any): "automóvel" | "moto" | "nautico" {
+  // Lógica para determinar o tipo baseado nas características do carro
+  // Exemplo simples - ajuste conforme sua necessidade:
+
+  if (car.bodyType === "moto") {
+    return "moto";
+  }
+
+  if (car.bodyType === "nautico") {
+    return "nautico";
+  }
+
+  // Padrão: considera como automóvel
+  return "automóvel";
 }
 
 // Função auxiliar para buscar marcas
@@ -210,7 +239,16 @@ export async function getFilterOptions(): Promise<FilterOptions> {
       | "semiautomático"
     >,
     carrocerias: [...new Set(cars.map((car) => car.bodyType))] as Array<
-      "sedã" | "hatch" | "coupe" | "pickup"
+      | "sedã"
+      | "hatch"
+      | "coupe"
+      | "pickup"
+      | "conversivel"
+      | "furgão"
+      | "suv"
+      | "utilitário"
+      | "moto"
+      | "nautico"
     >,
     cores: [...new Set(cars.map((car) => car.color))] as Array<
       | "preto"
@@ -230,6 +268,9 @@ export async function getFilterOptions(): Promise<FilterOptions> {
     >,
     estados: [...new Set(cars.map((car) => car.condition))] as Array<
       "novo" | "seminovo" | "usado"
+    >,
+    tiposVeiculo: ["automóvel", "moto", "nautico"] as Array<
+      "automóvel" | "moto" | "nautico"
     >,
   };
 }

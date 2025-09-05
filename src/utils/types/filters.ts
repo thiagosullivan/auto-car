@@ -1,5 +1,6 @@
 // types/filters.ts
 export interface CarFilters {
+  carType?: ("automóvel" | "moto" | "nautico")[];
   search?: string;
   marca?: string[];
   estado?: ("novo" | "seminovo" | "usado")[]; // Atualizado com "seminovo"
@@ -28,7 +29,18 @@ export interface CarFilters {
     | "auto_dupla_embreagem"
     | "semiautomático"
   )[]; // Valores específicos do enum
-  carroceria?: ("sedã" | "hatch" | "coupe" | "pickup")[]; // Valores específicos do enum
+  carroceria?: (
+    | "sedã"
+    | "hatch"
+    | "coupe"
+    | "pickup"
+    | "conversivel"
+    | "furgão"
+    | "suv"
+    | "utilitário"
+    | "moto"
+    | "nautico"
+  )[]; // Valores específicos do enum
   cor?: (
     | "preto"
     | "cinza"
@@ -93,7 +105,18 @@ export interface FilterOptions {
     | "auto_dupla_embreagem"
     | "semiautomático"
   )[];
-  carrocerias: ("sedã" | "hatch" | "coupe" | "pickup")[]; // Renomeado para carrocerias (plural)
+  carrocerias: (
+    | "sedã"
+    | "hatch"
+    | "coupe"
+    | "pickup"
+    | "conversivel"
+    | "furgão"
+    | "suv"
+    | "utilitário"
+    | "moto"
+    | "nautico"
+  )[]; // Renomeado para carrocerias (plural)
   cores: (
     | "preto"
     | "cinza"
@@ -111,6 +134,7 @@ export interface FilterOptions {
     | "rosa"
   )[];
   estados: ("novo" | "seminovo" | "usado")[]; // Adicionado estados
+  tiposVeiculo: ("automóvel" | "moto" | "nautico")[];
 }
 
 // Novo tipo para o carro completo
